@@ -2,33 +2,1450 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <title>Thiệp cưới</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thiệp Cưới Online</title>
+
+    <!-- FONT -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
     <style>
-      body {
-        font-family: serif;
-        text-align: center;
-        padding: 50px;
-        background: #fff0f5;
+      /* RESET */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
-      h1 {
-        font-size: 40px;
+
+      body {
+        background: #ffffff;
+        font-family: "Playfair Display", serif;
+        color: #333;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      /* ============================ */
+      /* PHẦN 1 – HERO SAVE THE DATE */
+      /* ============================ */
+
+      .hero {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        background-image: url("https://i.pinimg.com/736x/2c/71/3e/2c713e72020ef8d97d0f62dcddaf76ee.jpg");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 0;
+        text-align: center;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(10, 20, 30, 0.5) 0%,
+          rgba(10, 20, 30, 0.3) 40%,
+          rgba(240, 235, 220, 0.4) 70%,
+          rgba(240, 235, 220, 0.8) 100%
+        );
+      }
+
+      .hero > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-top {
+        padding: 30px 30px 0;
+        text-align: left;
+      }
+
+      .hero-names-top {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 50px;
+        animation: fadeInDown 1s ease-out;
+      }
+
+      .hero-name {
+        font-size: 11px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: white;
+        font-weight: 300;
+      }
+
+      .hero-quote {
+        font-size: 16px;
+        color: white;
+        line-height: 1.6;
+        font-weight: 300;
+        text-align: left;
+        animation: fadeIn 1.5s ease-out;
+      }
+
+      .hero-producer {
+        position: absolute;
+        right: 30px;
+        top: 170px;
+        font-size: 9px;
+        color: rgba(255, 255, 255, 0.8);
+        text-align: right;
+        line-height: 1.6;
+        animation: fadeIn 2s ease-out;
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .hero-bottom {
+        padding: 40px 30px;
+        background: linear-gradient(to bottom, transparent, rgba(240, 235, 220, 0.95));
+      }
+
+      .hero-subtitle {
+        font-size: 11px;
+        letter-spacing: 3px;
+        color: #333;
+        margin-bottom: 10px;
+        animation: fadeIn 1.8s ease-out;
+      }
+
+      .hero-main-title {
+        font-size: 34px;
+        color: #333;
+        margin-bottom: 8px;
+        letter-spacing: 2px;
+        font-weight: 400;
+        animation: slideUp 1s ease-out;
+      }
+
+      .hero-script-title {
+        font-family: "Great Vibes", cursive;
+        font-size: 56px;
+        color: #7a8450;
+        margin-bottom: 20px;
+        line-height: 1;
+        animation: slideUp 1.2s ease-out;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-tagline {
+        font-size: 13px;
+        color: #333;
+        font-style: italic;
+        margin-bottom: 25px;
+        line-height: 1.6;
+        animation: fadeIn 2s ease-out;
+      }
+
+      .hero-date-info {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: 15px;
+        animation: fadeIn 2.2s ease-out;
+      }
+
+      .hero-label {
+        font-size: 10px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #666;
+      }
+
+      .hero-date-large {
+        font-size: 28px;
+        font-weight: 600;
+        color: #333;
+        letter-spacing: 1px;
+      }
+
+      #guest {
+        font-size: 14px;
+        margin-bottom: 15px;
+        color: #333;
+        letter-spacing: 2px;
+        font-weight: 300;
+      }
+
+      /* ============================ */
+      /* PHẦN 2 – THIỆP MỜI */
+      /* ============================ */
+
+      .invitation-container {
+        max-width: 480px;
+        width: 100%;
+        background: white;
+        padding: 20px 40px;
+        text-align: center;
+        color: #333;
+      }
+
+      .header-text {
+        color: #a08a7e;
+        font-size: 13px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        animation: fadeInDown 1s ease-out;
+      }
+
+      .main-title {
+        font-size: 16px;
+        color: #6b5d54;
+        line-height: 1.8;
+        margin-bottom: 40px;
+        font-weight: 300;
+        animation: fadeIn 1.5s ease-out;
+      }
+
+      .decorative-line {
+        width: 60px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #d4a5a5, transparent);
+        margin: 10px auto;
+        animation: expandWidth 1.5s ease-out;
+      }
+
+      @keyframes expandWidth {
+        from {
+          width: 0;
+        }
+        to {
+          width: 60px;
+        }
+      }
+
+      .subtitle {
+        color: #6b5d54;
+        font-size: 13px;
+        letter-spacing: 2px;
+        margin-bottom: 25px;
+        animation: fadeIn 2s ease-out;
+      }
+
+      @keyframes scaleIn {
+        from {
+          opacity: 0;
+          transform: scale(0.5);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+
+
+      @keyframes heartbeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        25% {
+          transform: scale(1.1);
+        }
+        50% {
+          transform: scale(1);
+        }
+      }
+
+      /* PHOTO GRID với số ngày */
+      .photo-grid {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 12px;
+        margin-top: 40px;
+        position: relative;
+      }
+
+      .photo-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .photo-wrapper:nth-child(1) {
+        margin-top: 0;
+      }
+      .photo-wrapper:nth-child(2) {
+        margin-top: 35px;
+      }
+      .photo-wrapper:nth-child(3) {
+        margin-top: 70px;
+      }
+
+      .photo-date {
+        font-size: 54px;
+        font-weight: bold;
+        color: #333;
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+
+      .photo-placeholder {
+        width: 105px;
+        height: 150px;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .photo-placeholder:hover {
+        transform: scale(1.05);
+      }
+
+      .photo-placeholder img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .date-dot {
+        font-size: 54px;
+        color: #333;
+        line-height: 1;
+        align-self: flex-end;
+        margin-bottom: 158px;
+      }
+
+      /* ===================== */
+/* ĐỊA ĐIỂM TỔ CHỨC */
+/* ===================== */
+
+.wedding-location {
+  margin-top: 45px;
+  text-align: center;
+  animation: fadeIn 1.2s ease-out;
+}
+
+.loc-title {
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #6b5d54;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+.location-box {
+  background: #faf7f4;
+  padding: 22px 18px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.loc-name {
+  font-size: 15px;
+  color: #6b5d54;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.loc-address {
+  font-size: 13px;
+  color: #7d6f66;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.loc-time {
+  font-size: 12px;
+  color: #99897f;
+  margin-bottom: 18px;
+}
+
+.loc-map-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #c7b199;
+  color: white;
+  font-size: 12px;
+  letter-spacing: 1px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+
+.loc-map-btn:hover {
+  background: #b2967f;
+}
+
+
+      /* ============================ */
+      /* PHẦN 3 – LOVE NOTES */
+      /* ============================ */
+
+      .love-notes {
+        background: #f8f6f4;
+        padding: 60px 30px;
+      }
+
+      .section-title {
+        font-size: 12px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 40px;
+        color: #6b5d54;
+        text-align: center;
+      }
+
+      .love-content {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      .love-text {
+        flex: 1;
+        text-align: left;
+      }
+
+      .quote {
+        font-size: 20px;
+        font-style: italic;
+        color: #333;
+        margin-bottom: 20px;
+        line-height: 1.6;
+        font-family: "Cormorant Garamond", serif;
+      }
+
+      .quote-desc {
+        font-size: 13px;
+        line-height: 1.8;
+        color: #6b5d54;
+        margin-bottom: 20px;
+      }
+
+      .author {
+        font-size: 12px;
+        color: #a08a7e;
+        font-style: italic;
+      }
+
+      .love-image {
+        width: 180px;
+        height: 180px;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .love-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* ============================ */
+      /* PHẦN 4 – WHISPERS OF AFFECTION */
+      /* ============================ */
+
+      .whispers-section {
+        background: white;
+        padding: 80px 30px;
+      }
+
+      .whispers-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      .whispers-image-main {
+        width: 100%;
+        height: 280px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+      }
+
+      .whispers-image-main img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .whispers-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 30px;
+        flex-wrap: wrap;
+      }
+
+      .whispers-word {
+        font-size: 13px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: white;
+        font-weight: 400;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      }
+
+      .whispers-two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-top: 15px;
+      }
+
+      .whispers-letter-box {
+        background: #f8f6f4;
+        padding: 30px 20px;
+        border-radius: 8px;
+        text-align: left;
+        display: flex;
+        align-items: center;
+      }
+
+      .whispers-letter-text {
+        font-size: 12px;
+        line-height: 1.8;
+        color: #333;
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        margin-bottom: 0;
+      }
+
+      .whispers-portrait {
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .whispers-portrait img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .whispers-bottom {
+        width: 100%;
+        height: 320px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        margin-top: 15px;
+      }
+
+      .whispers-bottom img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(100%);
+      }
+
+      .whispers-bottom-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 40px 30px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+      }
+
+      .whispers-title {
+        font-size: 42px;
+        font-weight: 300;
+        letter-spacing: 8px;
+        color: white;
+        margin-bottom: 8px;
+        line-height: 1.1;
+      }
+
+      .whispers-subtitle {
+        font-size: 38px;
+        font-weight: 300;
+        letter-spacing: 6px;
+        color: #d4a5a5;
+        margin-bottom: 15px;
+      }
+
+      .whispers-designer {
+        font-size: 11px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: white;
+        margin-bottom: 15px;
+      }
+
+      .whispers-quote {
+        font-size: 12px;
+        font-style: italic;
+        color: white;
+        line-height: 1.7;
+        font-family: "Cormorant Garamond", serif;
+      }
+
+      /* ============================ */
+      /* PHẦN 5 – LOVE STORY TIMELINE */
+      /* ============================ */
+
+      .love-story {
+        background: #f5f1ed;
+        padding: 80px 30px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .love-story::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: 
+          repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(200, 180, 160, 0.05) 2px, rgba(200, 180, 160, 0.05) 4px),
+          repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(200, 180, 160, 0.05) 2px, rgba(200, 180, 160, 0.05) 4px);
+        pointer-events: none;
+      }
+
+      .love-story-container {
+        max-width: 420px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+
+      .story-logo {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 20px;
+        font-family: "Great Vibes", cursive;
+        color: #333;
+        letter-spacing: 1px;
+      }
+
+      .story-header {
+        text-align: right;
+        margin-bottom: 40px;
+      }
+
+      .story-main-title {
+        font-size: 42px;
+        line-height: 1.2;
+        color: #333;
+        font-family: "Great Vibes", cursive;
+        margin-bottom: 10px;
+      }
+
+      .story-content-wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .story-main-image {
+        width: 100%;
+        height: 380px;
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 
+          8px 8px 0 rgba(255, 255, 255, 0.8),
+          12px 12px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .story-main-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .story-rainbow-left,
+      .story-rainbow-right {
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        background: linear-gradient(135deg, 
+          rgba(255, 0, 0, 0.3),
+          rgba(255, 165, 0, 0.3),
+          rgba(255, 255, 0, 0.3),
+          rgba(0, 255, 0, 0.3),
+          rgba(0, 0, 255, 0.3),
+          rgba(75, 0, 130, 0.3),
+          rgba(238, 130, 238, 0.3)
+        );
+        border-radius: 50%;
+        filter: blur(40px);
+        opacity: 0.6;
+      }
+
+      .story-rainbow-left {
+        top: -40px;
+        left: -40px;
+      }
+
+      .story-rainbow-right {
+        bottom: -40px;
+        right: -40px;
+      }
+
+      .story-text-section {
+        background: rgba(255, 255, 255, 0.7);
+        padding: 35px 30px;
+        border-radius: 12px;
+        position: relative;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .story-subtitle {
+        font-size: 28px;
+        font-family: "Great Vibes", cursive;
+        color: #333;
+        margin-bottom: 15px;
+        line-height: 1.3;
+      }
+
+      .story-subtitle .heart {
+        color: #d4a5a5;
+        font-size: 24px;
+      }
+
+      .story-author {
+        font-size: 13px;
+        color: #8b7355;
+        letter-spacing: 2px;
+        margin-bottom: 25px;
+        display: block;
+      }
+
+      .story-quote-mark {
+        font-size: 60px;
+        color: #d4a5a5;
+        line-height: 0.5;
+        margin-bottom: 15px;
+        font-family: Georgia, serif;
+      }
+
+      .story-poem {
+        font-size: 15px;
+        line-height: 2;
+        color: #6b5d54;
+        margin-bottom: 25px;
+        font-family: "Cormorant Garamond", serif;
+      }
+
+      .story-poem-line {
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      .story-credits {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(160, 138, 126, 0.2);
+      }
+
+      .story-song-title {
+        font-size: 12px;
+        color: #333;
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+
+      .story-artist {
+        font-size: 11px;
+        color: #8b7355;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .story-gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        margin-top: 25px;
+      }
+
+      .story-small-photo {
+        width: 100%;
+        height: 160px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+
+      .story-small-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .story-small-photo:hover img {
+        transform: scale(1.05);
+      }
+
+      .story-small-photo:nth-child(2) {
+        margin-top: 30px;
+      }
+
+      .story-small-photo:nth-child(3) {
+        margin-top: -30px;
+      }
+
+      .story-decoration {
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+        width: 100px;
+        height: 150px;
+        opacity: 0.3;
+      }
+
+      .story-leaf {
+        width: 100%;
+        height: 100%;
+      }
+
+      .story-barcode {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        width: 120px;
+        height: 40px;
+      }
+
+      .story-barcode svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      /* ============================ */
+      /* PHẦN 6 – THE GALLERIES */
+      /* ============================ */
+
+      .galleries {
+        background: white;
+        padding: 60px 30px;
+        text-align: center;
+      }
+
+      .galleries-title {
+        font-size: 28px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        margin-bottom: 50px;
+        color: #333;
+      }
+
+      .gallery-item {
+        margin-bottom: 30px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .gallery-image {
+        width: 100%;
+        height: 280px;
+        position: relative;
+      }
+
+      .gallery-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .gallery-image::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.4));
+        z-index: 1;
+      }
+
+      .gallery-label {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        color: white;
+        font-size: 13px;
+        letter-spacing: 2px;
+        z-index: 2;
+      }
+
+      /* ============================ */
+      /* PHẦN 7 – FOOTER */
+      /* ============================ */
+
+      .footer {
+        background: #2c2c2c;
+        color: white;
+        padding: 40px 30px;
+        text-align: center;
+      }
+
+      .footer-text {
+        font-size: 14px;
+        letter-spacing: 2px;
+        margin-bottom: 15px;
+      }
+
+      .footer-names {
+        font-family: "Great Vibes", cursive;
+        font-size: 36px;
+        margin-bottom: 20px;
+      }
+
+      .footer-date {
+        font-size: 13px;
+        letter-spacing: 3px;
+        color: #d4a5a5;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 480px) {
+        .hero-names-top {
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+
+        .hero-name {
+          font-size: 9px;
+        }
+
+        .hero-quote {
+          font-size: 14px;
+        }
+
+        .hero-producer {
+          font-size: 8px;
+          top: 200px;
+        }
+
+        .hero-main-title {
+          font-size: 28px;
+        }
+
+        .hero-script-title {
+          font-size: 46px;
+        }
+
+        .hero-date-large {
+          font-size: 24px;
+        }
+
+        .love-content {
+          flex-direction: column;
+        }
+
+        .love-image {
+          width: 100%;
+          height: 220px;
+        }
+
+        .whispers-word {
+          font-size: 11px;
+          letter-spacing: 2px;
+        }
+
+        .whispers-two-col {
+          grid-template-columns: 1fr;
+        }
+
+        .whispers-title {
+          font-size: 32px;
+        }
+
+        .whispers-subtitle {
+          font-size: 28px;
+        }
+
+        .story-main-title {
+          font-size: 34px;
+        }
+
+        .story-gallery-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .story-small-photo:nth-child(2),
+        .story-small-photo:nth-child(3) {
+          margin-top: 0;
+        }
+
+        .story-logo {
+          font-size: 16px;
+        }
       }
     </style>
   </head>
-  <body>
-    <h1>💍 Thiệp cưới</h1>
-    <h2 id="guest"></h2>
 
-    <p>Trân trọng kính mời bạn đến dự buổi lễ thành hôn của chúng tôi.</p>
+  <body>
+    <div class="container">
+      <!-- ===================== -->
+      <!-- PHẦN 1: HERO -->
+      <!-- ===================== -->
+     <div class="hero">
+  <!-- Phần trên -->
+  <div class="hero-top">
+    <div class="hero-names-top">
+      <span class="hero-name">THIÊN ÁI</span>
+      <span class="hero-name">&</span>
+      <span class="hero-name">MINH KHÔI</span>
+    </div>
+
+    <div class="hero-quote">
+      “Từ khoảnh khắc gặp nhau,<br />
+      chúng tôi biết rằng yêu thương là điều đúng.”
+    </div>
+
+    <div class="hero-producer">
+      Trân trọng kính mời<br />
+      Quý khách đến chung vui cùng gia đình chúng tôi
+    </div>
+  </div>
+
+  <!-- Phần dưới -->
+  <div class="hero-bottom">
+    <div id="guest"></div>
+
+    <!-- <p class="hero-subtitle">SAVE THE DATE</p> -->
+
+    <h1 class="hero-main-title">LỄ THÀNH HÔN</h1>
+    <h2 class="hero-script-title">Thiên Ái & Minh Khôi</h2>
+
+    <p class="hero-tagline">
+      Sự hiện diện của Quý khách<br />
+      là niềm vinh hạnh cho gia đình chúng tôi
+    </p>
+
+    <div class="hero-date-info">
+      <span class="hero-label">NGÀY</span>
+      <span class="hero-date-large">26.01.2025</span>
+    </div>
+  </div>
+</div>
+
+
+      <!-- ===================== -->
+      <!-- PHẦN 2: THIỆP MỜI -->
+      <!-- ===================== -->
+      <div class="invitation-container">
+        <div class="header-text">Thiệp Mời Cưới</div>
+
+        <h1 class="main-title" id="inviteTitle">
+          TRÂN TRỌNG KÍNH MỜI<br />
+          BẠN ĐẾN DỰ<br />
+          LỄ THÀNH HÔN CỦA CHÚNG TÔI
+        </h1>
+
+        <div class="decorative-line"></div>
+
+        <p class="subtitle">SẼ ĐƯỢC TỔ CHỨC VÀO NGÀY</p>
+
+
+        <div class="photo-grid">
+          <div class="photo-wrapper">
+            <div class="photo-date">26</div>
+            <div class="photo-placeholder">
+              <img
+                src="https://i.pinimg.com/736x/12/7a/6f/127a6fbde5e7845b93cb2fd819f07c94.jpg"
+                alt="Wedding photo 1"
+              />
+            </div>
+          </div>
+
+          <div class="date-dot">·</div>
+
+          <div class="photo-wrapper">
+            <div class="photo-date">01</div>
+            <div class="photo-placeholder">
+              <img
+                src="https://i.pinimg.com/736x/e4/7d/2f/e47d2f72d072a3737e72a1133d86d716.jpg"
+                alt="Wedding photo 2"
+              />
+            </div>
+          </div>
+
+          <div class="date-dot">·</div>
+
+          <div class="photo-wrapper">
+            <div class="photo-date">25</div>
+            <div class="photo-placeholder">
+              <img
+                src="https://i.pinimg.com/1200x/1f/be/4a/1fbe4aa09f8f4fb1ef6af27631a3c7f5.jpg"
+                alt="Wedding photo 3"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- ===================== -->
+<!-- ĐỊA ĐIỂM TỔ CHỨC -->
+<!-- ===================== -->
+<div class="wedding-location">
+
+  <p class="loc-title">ĐỊA ĐIỂM TỔ CHỨC</p>
+
+  <div class="location-box">
+    <p class="loc-name">TRUNG TÂM TIỆC CƯỚI GOLDEN PALACE</p>
+    <p class="loc-address">
+      Sảnh Diamond – 85 Nguyễn Văn Linh, Q. Hải Châu, Đà Nẵng
+    </p>
+    <p class="loc-time">• Đón khách: 10:30 • Khai tiệc: 11:00 •</p>
+
+    <a
+      class="loc-map-btn"
+      href="https://maps.app.goo.gl/DXCviGm7xaEYvgX4A"
+      target="_blank"
+    >
+      Xem bản đồ →
+    </a>
+  </div>
+
+</div>
+
+      </div>
+
+      <!-- ===================== -->
+      <!-- PHẦN 3: LOVE NOTES -->
+      <!-- ===================== -->
+      <div class="love-notes">
+        <div class="section-title">LOVE NOTES</div>
+
+        <div class="love-content">
+          <div class="love-text">
+            <div class="quote">
+              "Twenty-five wonderful years<br />
+              and here we are still here"
+            </div>
+            <p class="quote-desc">
+              Hành trình tình yêu của chúng tôi là câu chuyện về sự kết nối sâu
+              sắc, nơi mỗi khoảnh khắc đều tràn đầy ý nghĩa. Từ những ngày đầu
+              gặp gỡ đến quyết định cùng nhau bước vào hôn nhân, chúng tôi đã
+              tìm thấy ở nhau tình yêu thương và sự trọn vẹn.
+            </p>
+            <div class="author">— Thiên Ái & Minh Khôi</div>
+          </div>
+
+          <div class="love-image">
+            <img
+              src="https://i.pinimg.com/736x/bf/68/7a/bf687a789f69afd2aaaf97b9cf1d868f.jpg"
+              alt="Love story"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================== -->
+      <!-- PHẦN 4: WHISPERS OF AFFECTION -->
+      <!-- ===================== -->
+      <div class="whispers-section">
+        <div class="whispers-grid">
+          <!-- Ảnh chính với các từ overlay -->
+          <div class="whispers-image-main">
+            <img
+              src="https://i.pinimg.com/736x/2c/71/3e/2c713e72020ef8d97d0f62dcddaf76ee.jpg"
+              alt="Wedding couple"
+            />
+            <div class="whispers-overlay">
+              <span class="whispers-word">ROMANCE</span>
+              <span class="whispers-word">DEVOTION</span>
+              <span class="whispers-word">TENDERNESS</span>
+              <span class="whispers-word">AFFECTION</span>
+            </div>
+          </div>
+
+          <!-- 2 cột: Letter & Portrait -->
+          <div class="whispers-two-col">
+            <div class="whispers-letter-box">
+              <p class="whispers-letter-text">
+                To my partner, you are my rock, my confidant, and my greatest
+                love. From the first moment we met, I knew there was something
+                extraordinary about you. Your kindness, patience, and unwavering
+                support have shown me what true love is. Together, we have built
+                a foundation of trust and respect, and I am so excited to
+                continue this journey with you.
+              </p>
+            </div>
+
+            <div class="whispers-portrait">
+              <img
+                src="https://i.pinimg.com/736x/bf/68/7a/bf687a789f69afd2aaaf97b9cf1d868f.jpg"
+                alt="Bride portrait"
+              />
+            </div>
+          </div>
+
+         
+        </div>
+      </div>
+
+      <!-- ===================== -->
+      <!-- PHẦN 5: LOVE STORY TIMELINE -->
+      <!-- ===================== -->
+      <div class="love-story">
+        <div class="love-story-container">
+          <div class="story-logo">Machoaky</div>
+
+          <div class="story-header">
+            <div class="story-main-title">
+              Tình nào<br />
+              không như<br />
+              tình đầu
+            </div>
+          </div>
+
+          <div class="story-content-wrapper">
+            <!-- Ảnh chính -->
+            <div class="story-main-image">
+              <img
+                src="https://i.pinimg.com/736x/2c/71/3e/2c713e72020ef8d97d0f62dcddaf76ee.jpg"
+                alt="Main couple photo"
+              />
+              <div class="story-rainbow-left"></div>
+              <div class="story-rainbow-right"></div>
+            </div>
+
+            <!-- Phần text -->
+            <div class="story-text-section">
+              <div class="story-subtitle">
+                Tình nào<br />không như <span class="heart">♡</span><br />Tình Đầu
+              </div>
+              <span class="story-author">THIÊN ÁI & MINH KHÔI</span>
+
+              <div class="story-quote-mark">"</div>
+
+              <div class="story-poem">
+                <span class="story-poem-line">Nếu một ngày biển chẳng còn xanh</span>
+                <span class="story-poem-line">Thì chắc là ngày em đang nhớ anh</span>
+                <span class="story-poem-line">Chẳng thể nào em hiểu được đâu</span>
+                <span class="story-poem-line">Em gieo rắc bao ưu sầu...</span>
+              </div>
+
+              <div class="story-credits">
+                <div>
+                  <div class="story-song-title">TÌNH NÀO KHÔNG</div>
+                  <div class="story-song-title">NHƯ TÌNH ĐẦU</div>
+                </div>
+                <div class="story-artist">THIÊN ÁI & MINH KHÔI</div>
+              </div>
+
+              <!-- Decoration -->
+              <div class="story-decoration">
+                <svg class="story-leaf" viewBox="0 0 100 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M50 10 Q70 40 50 70 Q30 40 50 10" stroke="#8b9a7f" stroke-width="1.5" fill="none"/>
+                  <path d="M50 70 Q75 95 50 120 Q25 95 50 70" stroke="#8b9a7f" stroke-width="1.5" fill="none"/>
+                  <path d="M50 120 Q70 135 50 150" stroke="#8b9a7f" stroke-width="1.5" fill="none"/>
+                  <path d="M50 120 Q30 135 50 150" stroke="#8b9a7f" stroke-width="1.5" fill="none"/>
+                  <line x1="50" y1="10" x2="50" y2="150" stroke="#8b9a7f" stroke-width="2"/>
+                </svg>
+              </div>
+
+              <!-- Barcode -->
+              <div class="story-barcode">
+               
+              </div>
+            </div>
+
+            <!-- Gallery 4 ảnh -->
+            <div class="story-gallery-grid">
+              <div class="story-small-photo">
+                <img
+                  src="https://i.pinimg.com/736x/12/7a/6f/127a6fbde5e7845b93cb2fd819f07c94.jpg"
+                  alt="Memory 1"
+                />
+              </div>
+              <div class="story-small-photo">
+                <img
+                  src="https://i.pinimg.com/736x/e4/7d/2f/e47d2f72d072a3737e72a1133d86d716.jpg"
+                  alt="Memory 2"
+                />
+              </div>
+              <div class="story-small-photo">
+                <img
+                  src="https://i.pinimg.com/1200x/1f/be/4a/1fbe4aa09f8f4fb1ef6af27631a3c7f5.jpg"
+                  alt="Memory 3"
+                />
+              </div>
+              <div class="story-small-photo">
+                <img
+                  src="https://i.pinimg.com/736x/bf/68/7a/bf687a789f69afd2aaaf97b9cf1d868f.jpg"
+                  alt="Memory 4"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================== -->
+      <!-- PHẦN 6: THE GALLERIES -->
+      <!-- ===================== -->
+      <div class="galleries">
+        <h2 class="galleries-title">THE GALLERIES</h2>
+
+        <div class="gallery-item">
+          <div class="gallery-image">
+            <img
+              src="https://i.pinimg.com/736x/be/10/29/be10298c9d217e51039a7c0bd9ca3929.jpg"
+              alt="Wedding gallery"
+            />
+            <div class="gallery-label">01. WEDDINGS</div>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-image">
+            <img
+              src="https://i.pinimg.com/736x/b6/f7/a2/b6f7a28b9f15d29bdd83205179f85bbb.jpg"
+              alt="Elopements gallery"
+            />
+            <div class="gallery-label">02. ELOPEMENTS</div>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-image">
+            <img
+              src="https://i.pinimg.com/736x/7a/56/52/7a56528469e8a188da62dbf3368025e2.jpg"
+              alt="Engagements gallery"
+            />
+            <div class="gallery-label">03. ENGAGEMENTS</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================== -->
+      <!-- PHẦN 7: FOOTER -->
+      <!-- ===================== -->
+      <div class="footer">
+        <div class="footer-text">CẢM ƠN BẠN ĐÃ ĐỒNG HÀNH CÙNG</div>
+        <div class="footer-names">Thiên Ái & Minh Khôi</div>
+        <div class="footer-date">26 • 01 • 2025</div>
+      </div>
+    </div>
 
     <script>
       function getParam(key) {
-        const params = new URLSearchParams(window.location.search);
-        return params.get(key);
+        return new URLSearchParams(window.location.search).get(key);
       }
 
-      const name = getParam("name") || "Quý khách";
-      document.getElementById("guest").innerText = "Gửi " + name;
+      let fullName = getParam("name");
+      const titleEl = document.getElementById("inviteTitle");
+
+      // Danh sách xưng hô một từ
+      const oneWordPrefix = [
+        "anh",
+        "chị",
+        "em",
+        "bé",
+        "cô",
+        "chú",
+        "dì",
+        "mợ",
+        "ông",
+        "bà",
+        "bác",
+      ];
+
+      // Ưu tiên xưng hô 2 từ: "gia đình"
+      const twoWordPrefix = ["gia đình"];
+
+      function detectPrefix(name) {
+        let clean = name.toLowerCase().trim();
+
+        // 1) Ưu tiên cụm 2 từ đầu
+        for (let prefix of twoWordPrefix) {
+          if (clean.startsWith(prefix)) {
+            return prefix.toUpperCase();
+          }
+        }
+
+        // 2) Kiểm tra xưng hô 1 từ (anh/chị/em/cô/chú...)
+        let firstWord = clean.split(" ")[0];
+        if (oneWordPrefix.includes(firstWord)) {
+          return firstWord.toUpperCase();
+        }
+
+        // 3) Không có xưng hô → mặc định "BẠN"
+        return "BẠN";
+      }
+
+      if (fullName) {
+        // Hiển thị lời mời
+        document.getElementById("guest").innerText = "Kính mời " + fullName;
+
+        // Xác định xưng hô
+        const prefix = detectPrefix(fullName);
+
+        // Thay chữ "BẠN" trong câu mời
+        titleEl.innerHTML = titleEl.innerHTML.replace("BẠN", prefix);
+      }
     </script>
   </body>
 </html>

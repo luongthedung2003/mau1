@@ -1,52 +1,150 @@
 <!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Thiệp cưới - Tạo lời mời</title>
-    <style>
-      body {
-        font-family: sans-serif;
-        padding: 30px;
-      }
-      input {
-        padding: 8px;
-        width: 250px;
-      }
-      button {
-        padding: 8px 15px;
-        margin-left: 10px;
-      }
-      #result {
-        margin-top: 20px;
-        font-weight: bold;
-      }
-    </style>
-  </head>
-  <body>
-    <h2>🎉 Tạo thiệp mời</h2>
+<head>
+<meta charset="UTF-8" />
+<title>Thiệp cưới - Tạo lời mời</title>
 
-    <input type="text" id="guestName" placeholder="Nhập tên khách mời" />
-    <button onclick="generateLink()">Tạo link</button>
+<style>
+  body {
+    font-family: sans-serif;
+    padding: 30px;
+  }
+  input {
+    padding: 8px;
+    width: 250px;
+  }
+  button {
+    padding: 8px 15px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
 
-    <p id="result"></p>
+  /* MODAL BACKDROP */
+  .modal-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.45);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
 
-    <script>
-      function generateLink() {
-        const name = document.getElementById("guestName").value.trim();
-        if (!name) return alert("Vui lòng nhập tên!");
+  /* MODAL BOX */
+  .modal-box {
+    background: white;
+    width: 90%;
+    max-width: 420px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    animation: popup 0.25s ease-out;
+    text-align: center;
+  }
 
-        const baseUrl =
-          window.location.origin +
-          window.location.pathname.replace("index.html", "");
-        const link = `${baseUrl}invitation.html?name=${encodeURIComponent(
-          name
-        )}`;
+  @keyframes popup {
+    from {
+      opacity: 0;
+      transform: scale(0.85);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 
-        document.getElementById("result").innerHTML = `
-    Link thiệp của khách: <br>
-    <a href="${link}" target="_blank">${link}</a>
-  `;
-      }
-    </script>
-  </body>
+  .modal-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 12px;
+  }
+
+  .modal-link {
+    background: #f4f4f4;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    margin: 12px 0;
+    word-wrap: break-word;
+  }
+
+  .modal-btn {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .copy-btn {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+  }
+  .close-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+  }
+</style>
+
+</head>
+
+<body>
+
+<h2>🎉 Tạo thiệp mời</h2>
+
+<input type="text" id="guestName" placeholder="Nhập tên khách mời" />
+<button onclick="generateLink()">Tạo link</button>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modal">
+  <div class="modal-box">
+    <div class="modal-title">🎁 Link thiệp đã tạo</div>
+
+    <div id="showLink" class="modal-link">đang tạo...</div>
+
+    <div class="modal-btn">
+      <button class="copy-btn" onclick="copyLink()">COPY LINK</button>
+      <button class="close-btn" onclick="closeModal()">ĐÓNG</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function generateLink() {
+  const name = document.getElementById("guestName").value.trim();
+  if (!name) return alert("Vui lòng nhập tên!");
+
+  const baseUrl =
+    window.location.origin +
+    window.location.pathname.replace("index.html", "");
+  const link = `${baseUrl}invitation.html?name=${encodeURIComponent(name)}`;
+
+  document.getElementById("showLink").innerText = link;
+
+  // SHOW MODAL
+  document.getElementById("modal").style.display = "flex";
+}
+
+// COPY FUNCTION
+function copyLink() {
+  const linkText = document.getElementById("showLink").innerText;
+  navigator.clipboard.writeText(linkText);
+  alert("Đã copy link!");
+}
+
+// CLOSE MODAL
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+}
+</script>
+
+</body>
 </html>
